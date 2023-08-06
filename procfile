@@ -1,8 +1,1 @@
-web: heroku config:set DISABLE_COLLECTSTATIC=1 
-web: python3 -m venv myvenv
-web: source myvenv/bin/activate
-web: python3 -m pip install --upgrade pip
-web: pip install -r requirements.txt
-web: python manage.py migrate
-web: python manage.py updatedict
-web: python manage.py runserver 0.0.0.0:51000
+web: gunicorn hellofly:app
