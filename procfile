@@ -1,3 +1,4 @@
+web: heroku config:set DISABLE_COLLECTSTATIC=1 
 web: python3 -m venv myvenv
 web: source myvenv/bin/activate
 web: python3 -m pip install --upgrade pip
