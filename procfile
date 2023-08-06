@@ -1,3 +1,5 @@
+web: source venv/bin/activate
+
 web: echo no | python manage.py collectstatic
 web: python manage.py migrate
 web: python manage.py updatedict
