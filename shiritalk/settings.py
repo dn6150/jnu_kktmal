@@ -1,3 +1,9 @@
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', # add this line
+    #Other middleware...
+]
+
 """
 Django settings for shiritalk project.
 
