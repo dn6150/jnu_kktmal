@@ -135,3 +135,6 @@ django_heroku.settings(locals())
 
 
 STDICT_KEY = 'C200E92E3D4BF9A38ED1F7E5D5F823C0'
+
+cwd = os.getcwd()
+if cwd == '/app' or cwd [:4] == '/tmp':
