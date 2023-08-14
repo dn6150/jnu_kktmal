@@ -1,2 +1,1 @@
-web: gunicorn hellofly:app
-web: python manage.py collectstatic --no-input
+web: python manage.py runserver 0.0.0.0:51000
