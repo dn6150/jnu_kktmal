@@ -447,12 +447,9 @@ def answer(request):
             'template': {
                 'outputs': [
                     {
-                        'basicCard': {
+                        'textCard': {
                             'description': wordchain,
-                            'thumbnail': {
-                                'imageUrl': request.build_absolute_uri(static('wordchain.png')),
-                                'fixedRatio': True
-                            },
+                            'text': "테스트"
                             'buttons': [
                                 {
                                     'action': 'message',
