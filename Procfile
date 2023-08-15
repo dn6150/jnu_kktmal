@@ -6,4 +6,4 @@ web: python manage.py makemigrations
 web: python manage.py migrate
 web: python manage.py migrate --run-syncdb 
 web: python manage.py updatedict
-web: python manage.py runserver 0.0.0.0:51000
+web: python manage.py runserver 0.0.0.0:8000
