@@ -52,9 +52,9 @@ def answer(request):
 
     if user.state == 'wordchain' and (cmd == '/게임시작' or cmd == '/새로고침'):
         try:
-            player = ShiritalkPlayer.objects.get(user=user)
+            player = ShiritalkPlayer.objects.get(user=bot_user)
         except ShiritalkPlayer.DoesNotExist:
-            player = ShiritalkPlayer(user=user)
+            player = ShiritalkPlayer(user=bot_user)
             player.save()
         outputs = []
         match = ShiritalkMatch.objects.all().first()
@@ -183,9 +183,9 @@ def answer(request):
 
     elif user.state == 'wordchain' and not cmd.startswith('/'):
         try:
-            player = ShiritalkPlayer.objects.get(user=user)
+            player = ShiritalkPlayer.objects.get(user=bot_user)
         except ShiritalkPlayer.DoesNotExist:
-            player = ShiritalkPlayer(user=user)
+            player = ShiritalkPlayer(user=bot_user)
             player.save()
         outputs = []
         match = ShiritalkMatch.objects.all().first()
