@@ -53,6 +53,7 @@ def answer(request):
     if user.state == 'wordchain' and (cmd == '/게임시작' or cmd == '/새로고침'):
         try:
             player = ShiritalkPlayer(user=bot_user)
+            player.save()
         except ShiritalkPlayer.DoesNotExist:
             player = ShiritalkPlayer(user=bot_user)
             player.save()
@@ -184,6 +185,7 @@ def answer(request):
     elif user.state == 'wordchain' and not cmd.startswith('/'):
         try:
             player = ShiritalkPlayer(user=bot_user)
+            player.save()
         except ShiritalkPlayer.DoesNotExist:
             player = ShiritalkPlayer(user=bot_user)
             player.save()
