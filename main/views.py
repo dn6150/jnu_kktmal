@@ -37,7 +37,7 @@ def answer(request):
     json_str = ((request.body).decode('utf-8'))
     received_json_data = json.loads(json_str)
     datacontent = received_json_data['userRequest']['utterance']
-    user_key = 1
+    user_key = received_json_data['userRequest']['user']['properties']['plusfriendUserKey']
 
     user = User.get_or_create(user_key)
 
@@ -52,10 +52,9 @@ def answer(request):
 
     if user.state == 'wordchain' and (cmd == '/게임시작' or cmd == '/새로고침'):
         try:
-            player = ShiritalkPlayer(user=bot_user)
-            player.save()
+            player = ShiritalkPlayer.objects.get(user=user)
         except ShiritalkPlayer.DoesNotExist:
-            player = ShiritalkPlayer(user=bot_user)
+            player = ShiritalkPlayer(user=user)
             player.save()
         outputs = []
         match = ShiritalkMatch.objects.all().first()
@@ -184,10 +183,9 @@ def answer(request):
 
     elif user.state == 'wordchain' and not cmd.startswith('/'):
         try:
-            player = ShiritalkPlayer(user=bot_user)
-            player.save()
+            player = ShiritalkPlayer.objects.get(user=user)
         except ShiritalkPlayer.DoesNotExist:
-            player = ShiritalkPlayer(user=bot_user)
+            player = ShiritalkPlayer(user=user)
             player.save()
         outputs = []
         match = ShiritalkMatch.objects.all().first()
@@ -246,8 +244,7 @@ def answer(request):
             player.save(update_fields=['score', 'last_played'])
             if not ShiritalkPlayer.objects.exclude(Q(match__isnull=True) | Q(user=bot_user) | Q(user=user)).exists():
                 try:
-                    bot_player = ShiritalkPlayer(user=bot_user)
-                    bot_player.save()
+                    bot_player = ShiritalkPlayer.objects.get(user=bot_user)
                 except ShiritalkPlayer.DoesNotExist:
                     bot_player = ShiritalkPlayer(user=bot_user)
                     bot_player.save()
